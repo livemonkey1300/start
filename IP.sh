@@ -5,9 +5,11 @@
 # Generate a bunch of hash #
 ############################
 
+DataDir='./Data'
 PasswordDate=$(date +%F-%T)
-PasswordFile="./Data/PasswordFile-$PasswordDate"
-touch -p "$PasswordFile"
+PasswordFile="$DataDir/PasswordFile-$PasswordDate"
+mkdir -p "$DataDir"
+touch "$PasswordFile"
 
 while read line 
 do 
