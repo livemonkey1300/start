@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yum -y install chrony
+#yum -y install chrony
 
 DATE=$(date +%F-%T)
 NTP_CONFIG='/etc/chrony.conf'
