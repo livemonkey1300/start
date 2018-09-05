@@ -2,7 +2,7 @@
 
 yum -y install mariadb mariadb-server python2-PyMySQL
 
-sed -i "s/1.1.1.1/$MYIP/g" SysData/openstack.cnf
+sed -i "s/bind-address.*$/bind-address\ =\ $MYIP/g" SysData/openstack.cnf
 cp SysData/openstack.cnf /etc/my.cnf.d/
 
 systemctl enable mariadb.service
