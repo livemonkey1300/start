@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#yum -y install chrony
+yum -y install chrony
 
 DATE=$(date +%F-%T)
 NTP_CONFIG='/etc/chrony.conf'
@@ -18,3 +18,5 @@ sed "s/#allow.*$/allow $NETWORK\/24/g" "$NTP_CONFIG"
 
 systemctl enable chronyd.service
 systemctl start chronyd.service
+
+chronyc sources
