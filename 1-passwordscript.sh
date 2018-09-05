@@ -17,7 +17,8 @@ var=$(openssl rand -base64 32 | sed 's/[^a-zA-Z0-9]//g' )
 echo "export $line=$var" >> "$PasswordFile"
 done < PasswordFile
 
-
+read -p 'What is your ip' myip
+echo "export MYIP=$myip" >> "$PasswordFile"
 
 #sed 's/[A-Za-z][A-Za-z]*$/replace/' file.txt
 #sed 's/[A-Za-z][A-Za-z]*$/replace/' file.txt
