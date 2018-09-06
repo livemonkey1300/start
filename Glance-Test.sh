@@ -15,19 +15,27 @@
 
 #sed -i "/^\[database\]$/a connection = mysql+pymysql://glance:$GLANCE_DBPASS@controller/glance"  /etc/glance/glance-api.conf
 
-keystone_authtoken='./SysData/Glance/keystone_authtoken'
-paste_deploy='./SysData/Glance/paste_deploy'
-while read line 
-do 
-sed -i "/^\[keystone_authtoken\]$/a $line"  /etc/glance/glance-api.conf
-done < "$keystone_authtoken"
-
-sed -i "/^\[keystone_authtoken\]$/a password = $GLANCE_PASS"  /etc/glance/glance-api.conf
-
 
 
 while read line 
 do 
-sed -i "/^\[paste_deploy\]$/a $line"  /etc/glance/glance-api.conf
-done < "$paste_deploy"
+#sed -i "/^\[paste_deploy\]$/a $line"  /etc/glance/glance-api.conf
+echo "$line to do"
+done < ls -1 ./SysData/Glance/
+
+# keystone_authtoken='./SysData/Glance/keystone_authtoken'
+# paste_deploy='./SysData/Glance/paste_deploy'
+# while read line 
+# do 
+# sed -i "/^\[keystone_authtoken\]$/a $line"  /etc/glance/glance-api.conf
+# done < "$keystone_authtoken"
+
+# sed -i "/^\[keystone_authtoken\]$/a password = $GLANCE_PASS"  /etc/glance/glance-api.conf
+
+
+
+# while read line 
+# do 
+# sed -i "/^\[paste_deploy\]$/a $line"  /etc/glance/glance-api.conf
+# done < "$paste_deploy"
 
