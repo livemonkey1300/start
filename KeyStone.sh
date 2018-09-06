@@ -22,10 +22,10 @@ ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/
 systemctl enable httpd.service
 systemctl start httpd.service
 
-echo "export OS_USERNAME=admin" >> keys
-echo "export OS_PASSWORD=$ADMIN_PASS" >> keys
-echo "export OS_PROJECT_NAME=admin" >> keys
-echo "export OS_USER_DOMAIN_NAME=Default" >> keys
-echo "export OS_PROJECT_DOMAIN_NAME=Default" >> keys
-echo "export OS_AUTH_URL=http://controller:35357/v3" >> keys
-echo "export OS_IDENTITY_API_VERSION=3" >> keys
+echo "export OS_USERNAME=admin" >> ~/keystonerc
+echo "export OS_PASSWORD=$ADMIN_PASS" >> ~/keystonerc
+echo "export OS_PROJECT_NAME=admin" >> ~/keystonerc
+echo "export OS_USER_DOMAIN_NAME=Default" >> ~/keystonerc
+echo "export OS_PROJECT_DOMAIN_NAME=Default" >> ~/keystonerc
+echo "export OS_AUTH_URL=http://controller:35357/v3" >> ~/keystonerc
+echo "export OS_IDENTITY_API_VERSION=3" >> ~/keystonerc

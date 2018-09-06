@@ -2,16 +2,16 @@
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
 # controller
-10.100.1.11       controller
+10.100.1.30       controller
 
 # compute1
 10.100.1.31       compute1
 
 # block1
-10.100.1.41       block1
+#10.100.1.41       block1
 
 # object1
-10.100.1.51       object1
+#10.100.1.51       object1
 
 # object2
-10.100.1.52       object2
+#10.100.1.52       object2
