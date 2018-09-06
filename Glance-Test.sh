@@ -59,16 +59,16 @@ CONFIGFILE=$CONFIGDIR$line
 while read config 
 do
 echo $config 
-sed -i "/^\[$line\]$/a $config"  /etc/glance/glance-registry.conf
+sed -i "/^\[$line\]$/a $config"  /etc/glance/glance-api.conf
 done < "$CONFIGFILE"
 
 done < <(ls -1 $CONFIGDIR)
 
-sed -i "s/GLANCE_DBPASS/$GLANCE_DBPASS/g" /etc/glance/glance-registry.conf
-sed -i "s/GLANCE_PASS/$GLANCE_PASS/g" /etc/glance/glance-registry.conf
+sed -i "s/GLANCE_DBPASS/$GLANCE_DBPASS/g" /etc/glance/glance-api.conf
+sed -i "s/GLANCE_PASS/$GLANCE_PASS/g" /etc/glance/glance-api.conf
 
 
 while read line 
 do
-	grep "^\[$line\]" -A10 /etc/glance/glance-registry.conf
+	grep "^\[$line\]" -A10 /etc/glance/glance-api.conf.conf
 done < <(ls -1 $CONFIGDIR)

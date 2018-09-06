@@ -1,0 +1,5 @@
+enabled_apis = osapi_compute,metadata
+transport_url = rabbit://openstack:RABBIT_PASS@controller
+my_ip = MYIP
+use_neutron = True
+firewall_driver = nova.virt.firewall.NoopFirewallDriver

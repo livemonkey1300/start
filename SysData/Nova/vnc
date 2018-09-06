@@ -1,0 +1,4 @@
+enabled = true
+
+server_listen = $my_ip
+server_proxyclient_address = $my_ip

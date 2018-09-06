@@ -1,6 +1,6 @@
 #!/bin/bash
 
- SQL/glance.txt | mysql -uroot -p"$ROOT_PASS"
+ sed "s/GLANCE_DBPASS/$GLANCE_DBPASS/g" SQL/glance.txt | mysql -uroot -p"$ROOT_PASS"
 
 openstack user create --domain default --password "$GLANCE_PASS" glance
 
@@ -39,3 +39,6 @@ do
 done < <(ls -1 $CONFIGDIR)
 
 su -s /bin/sh -c "glance-manage db_sync" glance
+
+systemctl enable openstack-glance-api.service openstack-glance-registry.service
+systemctl start openstack-glance-api.service openstack-glance-registry.service

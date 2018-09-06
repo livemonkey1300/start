@@ -1,0 +1,1 @@
+connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api
