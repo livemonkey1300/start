@@ -13,5 +13,12 @@ openstack endpoint create --region RegionOne image admin http://controller:9292
 
 yum -y install openstack-glance
 
-sed -i '/\[database\]/a connection = mysql+pymysql://glance:$GLANCE_DBPASS@controller/glance'  /etc/glance/glance-api.conf
+sed -i "/^\[database\]$/a connection = mysql+pymysql://glance:$GLANCE_DBPASS@controller/glance"  /etc/glance/glance-api.conf
 
+keystone_authtoken='Glance/keystone_authtoken'
+while read line 
+do 
+sed -i "/^\[keystone_authtoken\]$/a $line"  /etc/glance/glance-api.conf
+done < "$keystone_authtoken"
+
+sed -i "/^\[keystone_authtoken\]$/a password = $GLANCE_PASS"  /etc/glance/glance-api.conf
