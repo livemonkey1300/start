@@ -4,7 +4,7 @@ sed "s/GLANCE_DBPASS/$GLANCE_DBPASS/g" SQL/glance.txt | mysql -uroot -p"$ROOT_PA
 
 openstack user create --domain default --password "$GLANCE_PASS" glance
 
-penstack role add --project service --user glance admin
+openstack role add --project service --user glance admin
 
 openstack service create --name glance --description "OpenStack Image" image
 openstack endpoint create --region RegionOne image public http://controller:9292
