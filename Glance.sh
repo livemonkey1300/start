@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sed "s/GLANCE_DBPASS/$GLANCE_DBPASS/g" SQL/glance.txt | mysql -uroot -p"$ROOT_PASS"
+ SQL/glance.txt | mysql -uroot -p"$ROOT_PASS"
 
 openstack user create --domain default --password "$GLANCE_PASS" glance
 
@@ -13,12 +13,27 @@ openstack endpoint create --region RegionOne image admin http://controller:9292
 
 yum -y install openstack-glance
 
-sed -i "/^\[database\]$/a connection = mysql+pymysql://glance:$GLANCE_DBPASS@controller/glance"  /etc/glance/glance-api.conf
+#sed -i "/^\[database\]$/a connection = mysql+pymysql://glance:$GLANCE_DBPASS@controller/glance"  /etc/glance/glance-api.conf
 
-keystone_authtoken='./SysData/Glance/keystone_authtoken'
+
+CONFIGDIR='./SysData/Glance/'
 while read line 
-do 
-sed -i "/^\[keystone_authtoken\]$/a $line"  /etc/glance/glance-api.conf
-done < "$keystone_authtoken"
+do
+echo "$line"
+CONFIGFILE=$CONFIGDIR$line
+while read config 
+do
+echo $config 
+sed -i "/^\[$line\]$/a $config"  /etc/glance/glance-api.conf
+done < "$CONFIGFILE"
 
-sed -i "/^\[keystone_authtoken\]$/a password = $GLANCE_PASS"  /etc/glance/glance-api.conf
+done < <(ls -1 $CONFIGDIR)
+
+sed -i "s/GLANCE_DBPASS/$GLANCE_DBPASS/g" /etc/glance/glance-api.conf
+sed -i "s/GLANCE_PASS/$GLANCE_PASS/g" /etc/glance/glance-api.conf
+
+
+while read line 
+do
+	grep "^\[$line\]" -A20 /etc/glance/glance-api.conf
+done < <(ls -1 $CONFIGDIR)

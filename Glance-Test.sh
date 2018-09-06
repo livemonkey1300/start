@@ -16,18 +16,24 @@
 #sed -i "/^\[database\]$/a connection = mysql+pymysql://glance:$GLANCE_DBPASS@controller/glance"  /etc/glance/glance-api.conf
 
 
-CONFIGDIR = './SysData/Glance/'
-while read line 
-do 
-#sed -i "/^\[paste_deploy\]$/a $line"  /etc/glance/glance-api.conf
-echo "$line"
-CONFIGFILE = "$CONFIGDIR$line"
-while read config 
-do 
-sed -i "/^\[$line\]$/a $config"  /etc/glance/glance-api.conf
-done < "$CONFIGFILE"
+CONFIGDIR='./SysData/Glance/'
+# while read line 
+# do
+# echo "$line"
+# CONFIGFILE=$CONFIGDIR$line
+# while read config 
+# do
+# echo $config 
+# sed -i "/^\[$line\]$/a $config"  /etc/glance/glance-api.conf
+# done < "$CONFIGFILE"
 
-done < <(ls -1 "$CONFIGDIR")
+# done < <(ls -1 $CONFIGDIR)
+
+
+while read line 
+do
+	grep "^\[$line\]" -A20 /etc/glance/glance-api.conf
+done < <(ls -1 $CONFIGDIR)
 
 # keystone_authtoken='./SysData/Glance/keystone_authtoken'
 # paste_deploy='./SysData/Glance/paste_deploy'

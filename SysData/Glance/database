@@ -1,0 +1,1 @@
+connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance
