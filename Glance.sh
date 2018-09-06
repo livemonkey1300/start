@@ -37,3 +37,5 @@ while read line
 do
 	grep "^\[$line\]" -A10 /etc/glance/glance-api.conf
 done < <(ls -1 $CONFIGDIR)
+
+su -s /bin/sh -c "glance-manage db_sync" glance
