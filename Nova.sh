@@ -1,6 +1,6 @@
 #!/bin/bash
 
- sed -i "s/NOVA_DBPASS/$NOVA_DBPASS/g" SQL/nova.txt | mysql -uroot -p"$ROOT_PASS"
+ sed "s/NOVA_DBPASS/$NOVA_DBPASS/g" SQL/nova.txt | mysql -uroot -p"$ROOT_PASS"
 
 openstack user create --domain default --password "$NOVA_PASS" nova
 
