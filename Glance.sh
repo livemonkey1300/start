@@ -35,5 +35,5 @@ sed -i "s/GLANCE_PASS/$GLANCE_PASS/g" /etc/glance/glance-api.conf
 
 while read line 
 do
-	grep "^\[$line\]" -A20 /etc/glance/glance-api.conf
+	grep "^\[$line\]" -A10 /etc/glance/glance-api.conf
 done < <(ls -1 $CONFIGDIR)
