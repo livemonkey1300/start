@@ -38,8 +38,18 @@ create_endpoint_init(){
 }
 
 
-create_db "$NEUTRON_DBPASS" neutron
-create_endpoint_init neutron network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
+Test(){
+SERVICEUSER = $1
+SERVICE = $2
+SERVICEPASS = $3
+REGION = $4
+URL = $5
+}
+
+Test neutron network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
+
+#create_db "$NEUTRON_DBPASS" neutron
+#create_endpoint_init neutron network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
 
 
 
