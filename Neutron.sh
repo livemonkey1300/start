@@ -38,19 +38,25 @@ create_endpoint_init(){
 }
 
 
-Test(){
-SERVICEUSER="$1"
-SERVICE="$2"
-SERVICEPASS="$3"
-REGION="$4"
-URL="$5"
-echo "$REGION" "$SERVICE" "$SERVICEPASS" "$URL"
+yum_component(){
+    yum install -y openstack-neutron openstack-neutron-ml2 openstack-neutron-linuxbridge ebtables
 }
 
-Test 'neutron' network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
+yum_component
 
-create_db "$NEUTRON_DBPASS" neutron
-create_endpoint_init neutron network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
+# Test(){
+# SERVICEUSER="$1"
+# SERVICE="$2"
+# SERVICEPASS="$3"
+# REGION="$4"
+# URL="$5"
+# echo "$REGION" "$SERVICE" "$SERVICEPASS" "$URL"
+# }
+
+#Test 'neutron' network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
+
+#create_db "$NEUTRON_DBPASS" neutron
+#create_endpoint_init neutron network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
 
 
 
