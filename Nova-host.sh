@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yum install openstack-nova-compute
+yum -y install openstack-nova-compute
 
 CONFIGDIR='./SysData/Nova/'
 while read line 

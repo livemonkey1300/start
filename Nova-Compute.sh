@@ -11,6 +11,8 @@ source ~/keystonerc
 yum -y install git
 git clone https://github.com/livemonkey1300/start.git
 cd start
+git reset --hard
+git pull
 chmod 777 *.sh
 ./3-2ntp-slave.sh
 ./4-package.sh
