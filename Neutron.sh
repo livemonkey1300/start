@@ -37,12 +37,19 @@ create_endpoint_init(){
     create_endpoint "$SERVICE" "$REGION" "$URL"
 }
 
-
 yum_component(){
-    yum install -y openstack-neutron openstack-neutron-ml2 openstack-neutron-linuxbridge ebtables
+    PACKAGE="$1"
+    yum install -y "$PACKAGE"
 }
 
-yum_component
+config_save(){
+cat /etc/neutron/neutron.conf | grep -v '^#' | grep -i '[a-zA-Z].*$' >> /etc/neutron/neutron.conf.org
+}
+
+
+
+
+#yum_component 'openstack-neutron openstack-neutron-ml2 openstack-neutron-linuxbridge ebtables'
 
 # Test(){
 # SERVICEUSER="$1"
