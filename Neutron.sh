@@ -5,12 +5,12 @@
 create_db () {
 	DBPASS="$1"
 	SERVICE="$2"
-	echo "DROP DATABASE $SERVICE;" | mysql -uroot -p"$ROOT_PASS"
+	echo "DROP DATABASE  $SERVICE;" | mysql -uroot -p"$ROOT_PASS"
     echo "CREATE DATABASE $SERVICE;" | mysql -uroot -p"$ROOT_PASS"
     for host in 'localhost' '%'
     do
     	echo "DROP USER '$SERVICE'@'$host' " | mysql -uroot -p"$ROOT_PASS";
-    	echo "GRANT ALL PRIVILEGES ON $SERVICE.* '$SERVICE'@'$host' IDENTIFIED BY '$DBPASS' ; " | mysql -uroot -p"$ROOT_PASS"
+    	echo "GRANT ALL PRIVILEGES ON $SERVICE.* TO '$SERVICE'@'$host' IDENTIFIED BY '$DBPASS' ; " | mysql -uroot -p"$ROOT_PASS"
     done
 }
 
