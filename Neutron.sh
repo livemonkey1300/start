@@ -3,8 +3,8 @@
 
 
 create_db () {
-	$DBPASS= $1
-	$SERVICE= $2
+	DBPASS="$1"
+	SERVICE="$2"
 	echo "DROP DATABASE $SERVICE;" | mysql -uroot -p"$ROOT_PASS"
     echo "CREATE DATABASE $SERVICE;" | mysql -uroot -p"$ROOT_PASS"
     for host in 'localhost' '%'
@@ -16,9 +16,9 @@ create_db () {
 
 
 create_endpoint(){
-    SERVICE= $1
-    REGION= $2
-    URL= $3
+    SERVICE="$1"
+    REGION="$2"
+    URL="$3"
     for ACCESS in public internal admin
     do
         openstack endpoint create --region "$REGION" "$SERVICE" "$ACCESS" "$URL"
@@ -26,11 +26,11 @@ create_endpoint(){
 }
 
 create_endpoint_init(){
-    SERVICEUSER= $1
-    SERVICE= $2
-    SERVICEPASS= $3
-    REGION= $4
-    URL= $5
+    SERVICEUSER="$1"
+    SERVICE="$2"
+    SERVICEPASS="$3"
+    REGION="$4"
+    URL="$5"
     openstack user create --domain default --password "$SERVICEPASS" "$SERVICEUSER"
     openstack role add --project service --user "$SERVICEUSER" admin
     openstack service create --name "$SERVICEUSER" --description "$description" "$SERVICE"
@@ -39,18 +39,18 @@ create_endpoint_init(){
 
 
 Test(){
-SERVICEUSER= "$1"
-SERVICE= "$2"
-SERVICEPASS= "$3"
-REGION= "$4"
-URL= "$5"
+SERVICEUSER="$1"
+SERVICE="$2"
+SERVICEPASS="$3"
+REGION="$4"
+URL="$5"
 echo "$REGION" "$SERVICE" "$SERVICEPASS" "$URL"
 }
 
-Test neutron network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
+Test 'neutron' network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
 
-#create_db "$NEUTRON_DBPASS" neutron
-#create_endpoint_init neutron network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
+create_db "$NEUTRON_DBPASS" neutron
+create_endpoint_init neutron network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
 
 
 
