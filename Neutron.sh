@@ -47,7 +47,7 @@ cat /etc/neutron/neutron.conf | grep -v '^#' | grep -i '[a-zA-Z].*$' >> /etc/neu
 }
 
 
-
+create_endpoint network RegionOne 'http://controller:9696'
 
 #yum_component 'openstack-neutron openstack-neutron-ml2 openstack-neutron-linuxbridge ebtables'
 
