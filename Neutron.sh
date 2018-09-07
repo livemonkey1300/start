@@ -39,11 +39,11 @@ create_endpoint_init(){
 
 
 Test(){
-SERVICEUSER = $1
-SERVICE = $2
-SERVICEPASS = $3
-REGION = $4
-URL = $5
+SERVICEUSER = "$1"
+SERVICE = "$2"
+SERVICEPASS = "$3"
+REGION = "$4"
+URL = "$5"
 }
 
 Test neutron network "$NEUTRON_PASS" RegionOne 'http://controller:9696'
