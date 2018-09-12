@@ -28,6 +28,7 @@ answer='y'
 if [ "$answer" != "${answer#[Yy]}" ] ;then
     cp "$PasswordFile" ~/keystonerc
     echo "source ~/keystonerc " >> ~/.bash_profile
+    source ~/keystonerc
 else
     echo OK
 fi
