@@ -22,8 +22,9 @@ echo "" >> "$PasswordFile"
 echo "export MYIP=$myip" >> "$PasswordFile"
 
 
-echo "Do you want to save the PasswordFile (Y/y) "
-read answer
+#echo "Do you want to save the PasswordFile (Y/y) "
+#read answer
+answer='y'
 if [ "$answer" != "${answer#[Yy]}" ] ;then
     cp "$PasswordFile" ~/keystonerc
     echo "source ~/keystonerc " >> ~/.bash_profile
