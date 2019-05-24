@@ -1,7 +1,7 @@
 <h1>OpenStack Speed Spin</h1>
 <strong>Purpose</strong><br>
 Spin up and openstack environment really fast<br>
-Without having to relying on packstack from red had , the kolla project , tripplo or Ansible Openstack project<br>
+Without having to rely on packstack from red had , the kolla project , tripplo or Ansible Openstack project<br>
 <br>
 
 
